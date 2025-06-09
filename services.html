@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Services</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      body {
+        background-color: #f5f7f7;
+        margin: 0;
+        font-family: Arial, sans-serif;
+      }
+
+      nav {
+        background-color: #1e1e1e;
+        padding: 1rem;
+        color: white;
+        position: relative;
+      }
+
+      .menu-toggle {
+        font-size: 1.2rem;
+        cursor: pointer;
+        display: none;
+      }
+
+      .menu {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+      }
+
+      .menu a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      .menu a:hover {
+        color: #d3ad7f;
+      }
+
+      @media (max-width: 768px) {
+        .menu-toggle {
+          display: block;
+        }
+        .menu {
+          display: none;
+          flex-direction: column;
+          align-items: center;
+          background-color: #444;
+          padding: 1rem 0;
+        }
+        .menu.show {
+          display: flex;
+        }
+      }
+
+      h1 {
+        text-align: center;
+        margin-top: 1rem;
+        color: #d3ad7f;
+      }
+
+      .product-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        padding: 2rem;
+        max-width: 1200px;
+        margin: auto;
+      }
+
+      .product {
+        background-color: #fff;
+        padding: 1rem;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+      }
+
+      .product:hover {
+        transform: translateY(-5px);
+      }
+
+      .product img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+
+      .product h3 {
+        color: #333;
+      }
+
+      .product p {
+        color: #666;
+      }
+
+      .add-to-cart {
+        background-color: #d6af54;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        margin-top: 10px;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.3s ease;
+      }
+
+      .add-to-cart:hover {
+        background-color: #333;
+        transform: scale(1.05);
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav>
+      <div class="menu-toggle" onclick="toggleMenu()">Menu ☰</div>
+      <div class="menu" id="menu">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="plans.html">Plans</a>
+        <a href="services.html">Services</a>
+        <a href="reviews.html">Reviews</a>
+      </div>
+    </nav>
+
+    <section class="services">
+      <h1>Our Services</h1>
+      <section id="products">
+        <div class="product-grid">
+          <div class="product">
+            <h3>Living Room</h3>
+            <img src="./livingRoom.jpg" alt="Living Room" />
+            <p>Check out our Living Room services in detail.</p>
+            <a href="./livingRoom.html"
+              ><button class="add-to-cart">Check More..</button></a
+            >
+          </div>
+          <div class="product">
+            <h3>Kitchen</h3>
+            <img src="./kitchen.jpg" alt="Kitchen" />
+            <p>Check out our Kitchen services in detail.</p>
+            <a href="./kitchen.html"
+              ><button class="add-to-cart">Check More..</button></a
+            >
+          </div>
+          <div class="product">
+            <h3>Bed Room</h3>
+            <img src="./bedRoom.jpg" alt="Bed Room" />
+            <p>Check out our Bedroom services in detail.</p>
+            <a href="./bedRoom.html"
+              ><button class="add-to-cart">Check More..</button></a
+            >
+          </div>
+          <div class="product">
+            <h3>Bathroom</h3>
+            <img src="./bathroom.jpg" alt="Bathroom" />
+            <p>Check out our Bathroom services in detail.</p>
+            <a href="./bathRoom.html"
+              ><button class="add-to-cart">Check More..</button></a
+            >
+          </div>
+          <div class="product">
+            <h3>Balcony</h3>
+            <img src="./balcony.jpg" alt="Balcony" />
+            <p>Check out our Balcony services in detail.</p>
+            <a href="./balcony.html"
+              ><button class="add-to-cart">Check More..</button></a
+            >
+          </div>
+          <div class="product">
+            <h3>Other Services</h3>
+            <img src="./otherServices.png" alt="Other Services" />
+            <p>Check out our Other Services in detail.</p>
+            <a href="./otherServices.html"
+              ><button class="add-to-cart">Check More..</button></a
+            >
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <script>
+      function toggleMenu() {
+        const menu = document.getElementById("menu");
+        menu.classList.toggle("show");
+      }
+    </script>
+    <footer
+      style="
+        background-color: #111;
+        color: #d3ad7f;
+        text-align: center;
+        padding: 20px 10px;
+        margin-top: 50px;
+      "
+    >
+      <p>
+        Contact us:
+        <a
+          href="mailto:shinesolutionshpt@gmail.com"
+          style="color: #fff; text-decoration: underline"
+          >shinesolutionshpt@gmail.com</a
+        >
+        | Phone: +91-8277480140 | Phone: +91-98440079335
+      </p>
+      <p>&copy; 2025 Shine Solutions. All rights reserved.</p>
+    </footer>
+  </body>
+</html>

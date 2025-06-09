@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      body {
+        margin: 0;
+        background-color: #000;
+        color: #eee;
+        font-family: Arial, sans-serif;
+      }
+
+      nav {
+        background-color: #1e1e1e;
+        padding: 1rem;
+        color: white;
+        position: relative;
+      }
+
+      .menu-toggle {
+        font-size: 1.2rem;
+        cursor: pointer;
+        display: none;
+      }
+
+      .menu {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+      }
+
+      .menu a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      .menu a:hover {
+        color: #d3ad7f;
+      }
+
+      @media (max-width: 768px) {
+        .menu-toggle {
+          display: block;
+        }
+        .menu {
+          display: none;
+          flex-direction: column;
+          align-items: center;
+          background-color: #444;
+          padding: 1rem 0;
+        }
+        .menu.show {
+          display: flex;
+        }
+      }
+
+      .home {
+        text-align: center;
+        padding: 4rem 1rem;
+      }
+
+      .home img {
+        width: 100px;
+        height: auto;
+        margin-bottom: 20px;
+      }
+
+      footer {
+        background-color: #111;
+        color: #d3ad7f;
+        text-align: center;
+        padding: 20px 10px;
+        margin-top: 50px;
+      }
+
+      footer a {
+        color: #fff;
+        text-decoration: underline;
+      }
+
+      @media (max-width: 768px) {
+        .menu {
+          flex-direction: column;
+          display: none;
+          width: 100%;
+          padding-top: 10px;
+        }
+        .menu.show {
+          display: flex;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav>
+      <div class="menu-toggle" onclick="toggleMenu()">Menu ☰</div>
+      <div class="menu" id="menu">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="plans.html">Plans</a>
+        <a href="services.html">Services</a>
+        <a href="reviews.html">Reviews</a>
+      </div>
+    </nav>
+
+    <section class="home">
+      <img src="./logo.jpg" alt="Shine Solutions Logo" />
+      <h1>Shine Solutions</h1>
+      <p>Delivering great digital and home service experiences.</p>
+    </section>
+
+    <script>
+      function toggleMenu() {
+        const menu = document.getElementById("menu");
+        menu.classList.toggle("show");
+      }
+    </script>
+
+    <footer>
+      <p>Company Owners:<strong> Vanitha Kiran Pissay</strong></p>
+      <p>
+        Address: Shine Solutions, Main Bazaar, Hospet, Karnataka, India - 583201
+      </p>
+      <p>
+        Contact us:
+        <a href="mailto:shinesolutionshpt@gmail.com"
+          >shinesolutionshpt@gmail.com</a
+        >
+        | Phone: +91-8277480140 | +91-98440079335
+      </p>
+      <p>&copy; 2025 Shine Solutions. All rights reserved.</p>
+    </footer>
+  </body>
+</html>

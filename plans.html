@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Plans</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        body {
+            background-color: #000;
+            color: #eee;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        nav {
+            background-color: #1e1e1e;
+            padding: 1rem;
+            color: white;
+            position: relative;
+        }
+        
+        .menu-toggle {
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: none;
+        }
+        
+        .menu {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .menu a:hover {
+            color: #d3ad7f;
+        }
+        
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            .menu {
+                display: none;
+                flex-direction: column;
+                align-items: center;
+                background-color: #444;
+                padding: 1rem 0;
+            }
+            .menu.show {
+                display: flex;
+            }
+        }
+        
+        .plans {
+            text-align: center;
+            padding: 3rem 1rem;
+        }
+        
+        .plans h1 {
+            color: #d3ad7f;
+            margin-bottom: 2rem;
+        }
+        
+        .plan-box {
+            background-color: #1e1e1e;
+            padding: 2rem;
+            border-radius: 12px;
+            width: 320px;
+            box-shadow: 0 0 15px rgba(211, 173, 127, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .plan-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px rgba(211, 173, 127, 0.5);
+        }
+        
+        .plan-list {
+            text-align: left;
+            margin-top: 1rem;
+            padding-left: 1rem;
+        }
+        
+        .plan-list li {
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+        
+        .plan-price {
+            text-align: left;
+            margin-top: 1.5rem;
+        }
+        
+        .plan-price p {
+            margin: 8px 0;
+        }
+        
+        .plan-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+        }
+        
+        footer {
+            background-color: #111;
+            color: #d3ad7f;
+            text-align: center;
+            padding: 20px 10px;
+            margin-top: 50px;
+        }
+        
+        footer a {
+            color: #fff;
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .menu {
+                flex-direction: column;
+                display: none;
+                width: 100%;
+                padding-top: 10px;
+            }
+            .menu.show {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="menu-toggle" onclick="toggleMenu()">Menu ☰</div>
+        <div class="menu" id="menu">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="plans.html">Plans</a>
+            <a href="services.html">Services</a>
+            <a href="reviews.html">Reviews</a>
+        </div>
+    </nav>
+
+    <section class="plans">
+        <h1>Our Cleaning Plans</h1>
+
+        <div class="plan-container">
+            <!-- Classic Plan -->
+            <div class="plan-box">
+                <h2 style="color: #d3ad7f;">Classic Plan</h2>
+                <ul class="plan-list">
+                    <li>Dry Dusting</li>
+                    <li>Wet Wiping (Manual)</li>
+                    <li>Hand Mopping</li>
+                    <li>Kitchen Cleaning</li>
+                </ul>
+                <div class="plan-price">
+                    <p><strong>1 BHK:</strong> ₹3000</p>
+                    <p><strong>2 BHK:</strong> ₹3600</p>
+                    <p><strong>3 BHK:</strong> ₹4500</p>
+                    <p><strong>4 BHK:</strong> ₹5800</p>
+                </div>
+            </div>
+
+            <!-- Premium Plan -->
+            <div class="plan-box">
+                <h2 style="color: #d3ad7f;">Premium Plan</h2>
+                <ul class="plan-list">
+                    <li>Dry Dusting & Vacuuming</li>
+                    <li>Wet Wiping</li>
+                    <li>Machine Mopping</li>
+                    <li>Furniture Shampoo</li>
+                    <li>Appliance Cleaning</li>
+                    <li>Kitchen Cleaning</li>
+                    <li>Utensil Removal</li>
+                </ul>
+                <div class="plan-price">
+                    <p><strong>1 BHK:</strong> ₹5000</p>
+                    <p><strong>2 BHK:</strong> ₹6000</p>
+                    <p><strong>3 BHK:</strong> ₹7000</p>
+                    <p><strong>4 BHK:</strong> ₹8000</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            menu.classList.toggle('show');
+        }
+    </script>
+
+    <footer>
+        <p>Contact us: <a href="mailto:shinesolutionshpt@gmail.com">shinesolutionshpt@gmail.com</a> | Phone: +91-8277480140 | +91-98440079335</p>
+        <p>&copy; 2025 Shine Solutions. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

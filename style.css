@@ -1,0 +1,108 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, #000000, #0b0b0a);
+    color: white;
+}
+
+
+/* Navigation */
+
+nav {
+    background-color: #1e1e1e;
+    padding: 1rem;
+    position: relative;
+}
+
+.menu-toggle {
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: none;
+    color: white;
+}
+
+.menu {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.menu a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.menu a:hover {
+    color: #d3ad7f;
+    text-decoration: underline;
+}
+
+
+/* Section */
+
+section {
+    padding: 2em;
+    text-align: center;
+}
+
+
+/* Reviews */
+
+.review {
+    margin: 1em auto;
+    background: #222;
+    color: #eee;
+    padding: 1em;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
+    max-width: 800px;
+    transition: transform 0.3s;
+}
+
+.review:hover {
+    transform: scale(1.02);
+}
+
+
+/* Headings */
+
+h1,
+h2,
+h3 {
+    color: #d3ad7f;
+}
+
+
+/* Responsive Nav */
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+    .menu {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        background-color: #2d2d2d;
+        padding: 1rem 0;
+    }
+    .menu.show {
+        display: flex;
+    }
+}
+
+footer {
+    background-color: #111;
+    color: #d3ad7f;
+    text-align: center;
+    padding: 20px 10px;
+    margin-top: 50px;
+}
+
+footer a {
+    color: #fff;
+    text-decoration: underline;
+}

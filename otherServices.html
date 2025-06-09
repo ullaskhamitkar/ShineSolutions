@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Other Services</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(to right, #000000, #0b0b0a);
+        color: white;
+      }
+
+      .back-button {
+        display: inline-block;
+        background-color: #d3ad7f;
+        color: #000;
+        padding: 10px 20px;
+        margin: 20px;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+      }
+
+      .back-button:hover {
+        background-color: #fff;
+        color: #000;
+        transform: scale(1.05);
+      }
+
+      .container {
+        text-align: center;
+        padding: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      h1 {
+        color: #d3ad7f;
+        margin-bottom: 40px;
+      }
+
+      .grid-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+      }
+
+      .service-card {
+        background-color: #1a1a1a;
+        padding: 1.5rem;
+        border-radius: 12px;
+        box-shadow: 0 0 15px rgba(211, 173, 127, 0.3);
+        transition: transform 0.3s;
+      }
+
+      .service-card:hover {
+        transform: scale(1.03);
+      }
+
+      .service-card img {
+        width: 100%;
+        height: 400px;
+        /* Fixed height */
+        object-fit: cover;
+        /* Ensures the image fills the space and crops as needed */
+        border-radius: 10px;
+        margin-bottom: 15px;
+        display: block;
+      }
+
+      .service-card h2 {
+        color: #d3ad7f;
+        margin-bottom: 10px;
+      }
+
+      .service-card p {
+        color: #eee;
+        font-size: 1rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Back Button -->
+    <a href="./services.html" class="back-button">← Back to Services</a>
+
+    <div class="container">
+      <h1>Other Services</h1>
+
+      <div class="grid-container">
+        <!-- Security -->
+        <div class="service-card">
+          <img src="./security.jpg" alt="Security Service" />
+          <h2>Security</h2>
+          <p>
+            Professional and trustworthy security personnel for residential and
+            commercial premises. Ensure the safety of your loved ones and assets
+            with trained guards and surveillance support.
+          </p>
+        </div>
+
+        <!-- Plumber -->
+        <div class="service-card">
+          <img src="./plumber.jpg" alt="Plumber Service" />
+          <h2>Plumber</h2>
+          <p>
+            Expert plumbing services including leak repairs, pipe installations,
+            bathroom/kitchen fittings, and emergency fixes. Timely and efficient
+            solutions for all water-related concerns.
+          </p>
+        </div>
+
+        <!-- Electrician -->
+        <div class="service-card">
+          <img src="./electrician.jpg" alt="Electrician Service" />
+          <h2>Electrician</h2>
+          <p>
+            From appliance installation to wiring and lighting repair, our
+            certified electricians handle every job with precision and safety.
+          </p>
+        </div>
+
+        <!-- Carpenter -->
+        <div class="service-card">
+          <img src="./carpenter.jpg" alt="Carpenter Service" />
+          <h2>Carpenter</h2>
+          <p>
+            Furniture repair, custom cabinets, wooden fixtures, and more.
+            Skilled craftsmanship tailored to your needs with a focus on
+            durability and finish.
+          </p>
+        </div>
+
+        <!-- Painter -->
+        <div class="service-card">
+          <img src="./painter.jpg" alt="Painter Service" />
+          <h2>Painter</h2>
+          <p>
+            Brighten up your spaces with interior and exterior painting
+            services. Neat, fast, and high-quality work using safe and durable
+            paints.
+          </p>
+        </div>
+
+        <!-- Chef -->
+        <div class="service-card">
+          <img src="./chef.jpg" alt="Chef Service" />
+          <h2>Chef</h2>
+          <p>
+            Book a professional chef for home-cooked meals, parties, or daily
+            needs. Special menus available for various cuisines and dietary
+            preferences.
+          </p>
+        </div>
+
+        <!-- Driver -->
+        <div class="service-card">
+          <img src="./driver.jpg" alt="Driver Service" />
+          <h2>Driver</h2>
+          <p>
+            Reliable drivers for your daily commute, outstation travel, or
+            events. Safety, punctuality, and professionalism guaranteed.
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bathroom Services</title>
+    <link rel="stylesheet" href="../style.css" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(to right, #000000, #0b0b0a);
+        color: white;
+      }
+
+      .back-button {
+        display: inline-block;
+        background-color: #d3ad7f;
+        color: #000;
+        padding: 10px 20px;
+        margin: 20px;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+      }
+
+      .back-button:hover {
+        background-color: #fff;
+        color: #000;
+        transform: scale(1.05);
+      }
+
+      .container {
+        text-align: center;
+        padding: 2rem;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      .container img {
+        max-width: 60%;
+        height: auto;
+        border-radius: 10px;
+        margin-top: 20px;
+        margin-bottom: 30px;
+        box-shadow: 0 0 15px rgba(211, 173, 127, 0.7);
+      }
+
+      .container p {
+        margin-top: 1.5rem;
+        font-size: 1.1rem;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+        color: #eee;
+      }
+
+      h1 {
+        color: #d3ad7f;
+      }
+      /* Section styling */
+
+      section.cleaning-section {
+        margin-bottom: 40px;
+        text-align: left;
+      }
+
+      section.cleaning-section h2 {
+        color: #d3ad7f;
+        border-bottom: 2px solid #d3ad7f;
+        padding-bottom: 5px;
+        margin-bottom: 20px;
+      }
+
+      .items-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 20px;
+      }
+
+      .item {
+        background: #111;
+        border-radius: 8px;
+        padding: 10px;
+        text-align: center;
+        box-shadow: 0 0 8px rgba(211, 173, 127, 0.5);
+        transition: transform 0.3s ease;
+      }
+
+      .item:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 15px #d3ad7f;
+      }
+
+      .item img {
+        width: 100%;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        border: 2px solid #d3ad7f;
+      }
+
+      .item p {
+        color: #eee;
+        font-size: 1rem;
+        margin: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Back Button -->
+    <a href="./services.html" class="back-button">← Back to Services</a>
+
+    <!-- Main Container -->
+    <div class="container">
+      <h1>Bathroom Deep Cleaning & Care</h1>
+      <img src="./bathroom.jpg" alt="Bathroom" />
+      <p>
+        Our bathroom services ensure hygienic and sparkling clean restrooms.
+        From tile scrubbing to mirror polishing and odor removal, we provide
+        detailed cleaning and maintenance for a fresh, sanitized space every
+        time.
+      </p>
+
+      <!-- Wet Wiping Section -->
+      <section class="cleaning-section" id="wet-wiping">
+        <h2>Wet Wiping</h2>
+        <div class="items-grid">
+          <div class="item">
+            <img src="./geyser.jpg" alt="Geyser" />
+            <p>Geyser</p>
+          </div>
+          <div class="item">
+            <img src="./exhaust.jpg" alt="Exhaust" />
+            <p>Exhaust</p>
+          </div>
+          <div class="item">
+            <img src="./switch-board.jpg" alt="Switch Boards" />
+            <p>Switch Boards</p>
+          </div>
+          <div class="item">
+            <img src="./windows-doors.jpg" alt="Doors & Windows" />
+            <p>Doors & Windows</p>
+          </div>
+          <div class="item">
+            <img src="./glass-mirror.jpg" alt="Glass & Mirror" />
+            <p>Glass & Mirror</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Stain Removal Section -->
+      <section class="cleaning-section" id="stain-removal">
+        <h2>Stain Removal</h2>
+        <div class="items-grid">
+          <div class="item">
+            <img src="./shower.jpg" alt="Shower" />
+            <p>Shower</p>
+          </div>
+          <div class="item">
+            <img src="./taps.jpg" alt="Taps" />
+            <p>Taps</p>
+          </div>
+          <div class="item">
+            <img src="./toilet.jpg" alt="Toilet" />
+            <p>Toilet</p>
+          </div>
+          <div class="item">
+            <img src="./tiles.jpg" alt="Tiles" />
+            <p>Tiles</p>
+          </div>
+          <div class="item">
+            <img src="./basin.jpg" alt="Basin" />
+            <p>Basin</p>
+          </div>
+          <div class="item">
+            <img src="./drain-tap.jpg" alt="Drain Tap" />
+            <p>Drain Tap</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>
