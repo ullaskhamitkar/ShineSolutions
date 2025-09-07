@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shine Solutions - Appointment Booking</title>
+    <link rel="icon" href="./logo.jpg" type="image/jpeg" />
+    <link rel="apple-touch-icon" href="./logo.jpg" />
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: #1e1e2f;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        max-width: 600px;
+        margin: 50px auto;
+        background: #ffffff;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        text-align: center;
+      }
+
+      .branding {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 20px;
+      }
+
+      .branding img {
+        height: 50px;
+        width: auto;
+      }
+
+      .branding h2 {
+        color: #2ecc71;
+        font-size: 28px;
+        margin: 0;
+      }
+
+      h1 {
+        color: #2ecc71;
+        margin-bottom: 25px;
+        font-size: 24px;
+      }
+
+      label {
+        display: block;
+        margin-top: 15px;
+        font-weight: 600;
+        color: #333;
+        text-align: left;
+      }
+
+      input,
+      select,
+      textarea {
+        width: 100%;
+        padding: 12px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 16px;
+        box-sizing: border-box;
+        transition: 0.3s;
+      }
+
+      input:focus,
+      select:focus,
+      textarea:focus {
+        border-color: #2ecc71;
+        outline: none;
+        box-shadow: 0 0 5px rgba(46, 204, 113, 0.3);
+      }
+
+      #otherService {
+        display: none;
+      }
+
+      button {
+        margin-top: 25px;
+        padding: 14px 0;
+        width: 100%;
+        background: #2ecc71;
+        color: #fff;
+        font-size: 18px;
+        font-weight: 600;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      button:hover {
+        background: #27ae60;
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 80px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="branding">
+        <img src="./logo.jpg" alt="Shine Solutions Logo" />
+        <h2>Shine Solutions</h2>
+      </div>
+
+      <h1>Book an Appointment</h1>
+      <form
+        id="appointmentForm"
+        action="https://formspree.io/f/xjkejrkl"
+        method="POST"
+      >
+        <input type="hidden" name="_replyto" />
+        <input
+          type="hidden"
+          name="_subject"
+          value="Shine Solutions Appointment Confirmation"
+        />
+        <input type="hidden" name="_template" value="table" />
+
+        <label for="name">Name*</label>
+        <input
+          type="text"
+          name="name"
+          id="name"
+          placeholder="Enter your name"
+          required
+        />
+
+        <label for="email">Email*</label>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          placeholder="Enter your email"
+          required
+        />
+
+        <label for="phone">Phone*</label>
+        <input
+          type="tel"
+          name="phone"
+          id="phone"
+          placeholder="Enter your phone number"
+          required
+        />
+
+        <label for="serviceSelect">Service*</label>
+        <select name="service" id="serviceSelect" required>
+          <option value="">Select a service</option>
+          <option value="Cleaning">Cleaning</option>
+          <option value="Security">Security</option>
+          <option value="Other">Other</option>
+        </select>
+
+        <input
+          type="text"
+          name="otherService"
+          id="otherService"
+          placeholder="Specify other service"
+        />
+
+        <label for="frequency">Frequency*</label>
+        <select name="frequency" id="frequency" required>
+          <option value="">Select frequency</option>
+          <option value="One-time">One-time</option>
+          <option value="Weekly">Weekly</option>
+          <option value="Monthly">Monthly</option>
+        </select>
+
+        <label for="date">Date*</label>
+        <input type="date" name="date" id="date" required />
+
+        <label for="time">Time*</label>
+        <input type="time" name="time" id="time" required />
+
+        <label for="address">Address*</label>
+        <textarea
+          name="address"
+          id="address"
+          placeholder="Enter your address"
+          required
+        ></textarea>
+
+        <label for="notes">Additional Notes</label>
+        <textarea
+          name="notes"
+          id="notes"
+          placeholder="Any special instructions"
+        ></textarea>
+
+        <button type="submit">Submit & Pay ₹100</button>
+      </form>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const serviceSelect = document.getElementById("serviceSelect");
+        const otherServiceInput = document.getElementById("otherService");
+        const form = document.getElementById("appointmentForm");
+        const replyInput = form.querySelector('input[name="_replyto"]');
+        const dateInput = document.getElementById("date");
+
+        // Prevent past dates
+        if (dateInput) {
+          const today = new Date().toISOString().split("T")[0];
+          dateInput.setAttribute("min", today);
+        }
+
+        // Show/hide Other Service input
+        serviceSelect.addEventListener("change", () => {
+          if (serviceSelect.value === "Other") {
+            otherServiceInput.style.display = "block";
+            otherServiceInput.required = true;
+          } else {
+            otherServiceInput.style.display = "none";
+            otherServiceInput.required = false;
+            otherServiceInput.value = "";
+          }
+        });
+
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          replyInput.value = form.email.value;
+
+          const options = {
+            key: "rzp_test_REfKK8H4mcNbS5", // Replace with your Razorpay key
+            amount: 10000,
+            currency: "INR",
+            name: "Shine Solutions Appointment Booking",
+            description: "Appointment Booking Fee",
+            prefill: {
+              name: form.name.value,
+              email: form.email.value,
+              contact: form.phone.value,
+            },
+            theme: { color: "#2ecc71" },
+            handler: function (response) {
+              // Add Razorpay payment ID to form
+              const paymentInput = document.createElement("input");
+              paymentInput.type = "hidden";
+              paymentInput.name = "razorpay_payment_id";
+              paymentInput.value = response.razorpay_payment_id;
+              form.appendChild(paymentInput);
+
+              // Generate PDF with jsPDF
+              const { jsPDF } = window.jspdf;
+              const doc = new jsPDF();
+              doc.setFontSize(16);
+              doc.text("Shine Solutions Appointment", 20, 20);
+              doc.setFontSize(12);
+              doc.text(`Name: ${form.name.value}`, 20, 35);
+              doc.text(`Email: ${form.email.value}`, 20, 45);
+              doc.text(`Phone: ${form.phone.value}`, 20, 55);
+              doc.text(
+                `Service: ${form.service.value}${
+                  form.service.value === "Other"
+                    ? " - " + form.otherService.value
+                    : ""
+                }`,
+                20,
+                65
+              );
+              doc.text(`Frequency: ${form.frequency.value}`, 20, 75);
+              doc.text(`Date: ${form.date.value}`, 20, 85);
+              doc.text(`Time: ${form.time.value}`, 20, 95);
+              doc.text(`Address: ${form.address.value}`, 20, 105);
+              doc.text(`Notes: ${form.notes.value}`, 20, 115);
+              doc.text(`Payment ID: ${response.razorpay_payment_id}`, 20, 125);
+              doc.save(`ShineSolutions_${form.name.value}.pdf`);
+
+              // Submit form to Formspree
+              const formData = new FormData(form);
+              fetch(form.action, {
+                method: form.method,
+                body: formData,
+                headers: { Accept: "application/json" },
+              })
+                .then((res) => {
+                  if (res.ok) {
+                    form.reset();
+                    window.location.href = "thankyou.html";
+                  } else {
+                    alert("Form submission failed. Please contact support.");
+                  }
+                })
+                .catch((err) => {
+                  console.error(err);
+                  alert("Network error. Please contact support.");
+                });
+            },
+          };
+
+          const rzp = new Razorpay(options);
+          rzp.on("payment.failed", function (response) {
+            console.error(response.error);
+            alert("Payment failed. Please try again.");
+          });
+          rzp.open();
+        });
+      });
+    </script>
+  </body>
+</html>
