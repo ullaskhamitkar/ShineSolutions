@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const form = document.getElementById("appointmentForm");
   if (form) {
-    // Set customer email for Formspree reply
+    // Set hidden inputs for Formspree
     const replyInput = document.createElement("input");
     replyInput.type = "hidden";
     replyInput.name = "_replyto";
@@ -50,57 +50,53 @@ document.addEventListener("DOMContentLoaded", () => {
       // Update _replyto dynamically
       replyInput.value = form.email.value;
 
-      const options = {
-        key: "rzp_test_REfKK8H4mcNbS5", // Replace with your Razorpay key
-        amount: 10000, // ₹100 in paise
-        currency: "INR",
-        name: "Shine Solutions Appointment Booking",
-        description: "Appointment Booking Fee",
-        prefill: {
-          name: form.name.value,
-          email: form.email.value,
-          contact: form.phone.value,
-        },
-        theme: { color: "#4CAF50" },
-        handler: function (response) {
-          // Add Razorpay payment ID to form
-          const paymentInput = document.createElement("input");
-          paymentInput.type = "hidden";
-          paymentInput.name = "razorpay_payment_id";
-          paymentInput.value = response.razorpay_payment_id;
-          form.appendChild(paymentInput);
+      // ---- Generate PDF Invoice ----
+      if (window.jspdf) {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+        doc.setFontSize(16);
+        doc.text("Shine Solutions Appointment", 20, 20);
+        doc.setFontSize(12);
+        doc.text(`Name: ${form.name.value}`, 20, 35);
+        doc.text(`Email: ${form.email.value}`, 20, 45);
+        doc.text(`Phone: ${form.phone.value}`, 20, 55);
+        doc.text(
+          `Service: ${form.service.value}${
+            form.service.value === "Other"
+              ? " - " + form.otherService.value
+              : ""
+          }`,
+          20,
+          65
+        );
+        doc.text(`Frequency: ${form.frequency.value}`, 20, 75);
+        doc.text(`Date: ${form.date.value}`, 20, 85);
+        doc.text(`Time: ${form.time.value}`, 20, 95);
+        doc.text(`Address: ${form.address.value}`, 20, 105);
+        doc.text(`Notes: ${form.notes.value}`, 20, 115);
 
-          // AJAX submit form to Formspree
-          const formData = new FormData(form);
-          fetch(form.action, {
-            method: form.method,
-            body: formData,
-            headers: { Accept: "application/json" },
-          })
-            .then((res) => {
-              if (res.ok) {
-                form.reset(); // Clear form after submission
-                window.location.href = "thankyou.html"; // Redirect to thankyou page
-              } else {
-                alert("Form submission failed. Please contact support.");
-              }
-            })
-            .catch((err) => {
-              console.error(err);
-              alert("Network error. Please contact support.");
-            });
-        },
-      };
+        doc.save(`ShineSolutions_${form.name.value}.pdf`);
+      }
 
-      const rzp = new Razorpay(options);
-
-      // Handle payment failures
-      rzp.on("payment.failed", function (response) {
-        console.error(response.error);
-        alert("Payment failed. Please try again.");
-      });
-
-      rzp.open();
+      // ---- Submit form to Formspree ----
+      const formData = new FormData(form);
+      fetch(form.action, {
+        method: form.method,
+        body: formData,
+        headers: { Accept: "application/json" },
+      })
+        .then((res) => {
+          if (res.ok) {
+            form.reset(); // Clear form after submission
+            window.location.href = "thankyou.html"; // Redirect to thankyou page
+          } else {
+            alert("Form submission failed. Please contact support.");
+          }
+        })
+        .catch((err) => {
+          console.error(err);
+          alert("Network error. Please contact support.");
+        });
     });
   }
 });
