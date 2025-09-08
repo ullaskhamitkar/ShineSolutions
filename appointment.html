@@ -6,7 +6,6 @@
     <title>Shine Solutions - Appointment Booking</title>
     <link rel="icon" href="./logo.jpg" type="image/jpeg" />
     <link rel="apple-touch-icon" href="./logo.jpg" />
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
       body {
@@ -200,7 +199,7 @@
           placeholder="Any special instructions"
         ></textarea>
 
-        <button type="submit">Submit & Pay ₹100</button>
+        <button type="submit">Submit</button>
       </form>
     </div>
 
@@ -230,84 +229,55 @@
           }
         });
 
+        // Handle form submission without payment
         form.addEventListener("submit", function (e) {
           e.preventDefault();
           replyInput.value = form.email.value;
 
-          const options = {
-            key: "rzp_test_REfKK8H4mcNbS5", // Replace with your Razorpay key
-            amount: 10000,
-            currency: "INR",
-            name: "Shine Solutions Appointment Booking",
-            description: "Appointment Booking Fee",
-            prefill: {
-              name: form.name.value,
-              email: form.email.value,
-              contact: form.phone.value,
-            },
-            theme: { color: "#2ecc71" },
-            handler: function (response) {
-              // Add Razorpay payment ID to form
-              const paymentInput = document.createElement("input");
-              paymentInput.type = "hidden";
-              paymentInput.name = "razorpay_payment_id";
-              paymentInput.value = response.razorpay_payment_id;
-              form.appendChild(paymentInput);
+          // Generate PDF with jsPDF
+          const { jsPDF } = window.jspdf;
+          const doc = new jsPDF();
+          doc.setFontSize(16);
+          doc.text("Shine Solutions Appointment", 20, 20);
+          doc.setFontSize(12);
+          doc.text(`Name: ${form.name.value}`, 20, 35);
+          doc.text(`Email: ${form.email.value}`, 20, 45);
+          doc.text(`Phone: ${form.phone.value}`, 20, 55);
+          doc.text(
+            `Service: ${form.service.value}${
+              form.service.value === "Other"
+                ? " - " + form.otherService.value
+                : ""
+            }`,
+            20,
+            65
+          );
+          doc.text(`Frequency: ${form.frequency.value}`, 20, 75);
+          doc.text(`Date: ${form.date.value}`, 20, 85);
+          doc.text(`Time: ${form.time.value}`, 20, 95);
+          doc.text(`Address: ${form.address.value}`, 20, 105);
+          doc.text(`Notes: ${form.notes.value}`, 20, 115);
+          doc.save(`ShineSolutions_${form.name.value}.pdf`);
 
-              // Generate PDF with jsPDF
-              const { jsPDF } = window.jspdf;
-              const doc = new jsPDF();
-              doc.setFontSize(16);
-              doc.text("Shine Solutions Appointment", 20, 20);
-              doc.setFontSize(12);
-              doc.text(`Name: ${form.name.value}`, 20, 35);
-              doc.text(`Email: ${form.email.value}`, 20, 45);
-              doc.text(`Phone: ${form.phone.value}`, 20, 55);
-              doc.text(
-                `Service: ${form.service.value}${
-                  form.service.value === "Other"
-                    ? " - " + form.otherService.value
-                    : ""
-                }`,
-                20,
-                65
-              );
-              doc.text(`Frequency: ${form.frequency.value}`, 20, 75);
-              doc.text(`Date: ${form.date.value}`, 20, 85);
-              doc.text(`Time: ${form.time.value}`, 20, 95);
-              doc.text(`Address: ${form.address.value}`, 20, 105);
-              doc.text(`Notes: ${form.notes.value}`, 20, 115);
-              doc.text(`Payment ID: ${response.razorpay_payment_id}`, 20, 125);
-              doc.save(`ShineSolutions_${form.name.value}.pdf`);
-
-              // Submit form to Formspree
-              const formData = new FormData(form);
-              fetch(form.action, {
-                method: form.method,
-                body: formData,
-                headers: { Accept: "application/json" },
-              })
-                .then((res) => {
-                  if (res.ok) {
-                    form.reset();
-                    window.location.href = "thankyou.html";
-                  } else {
-                    alert("Form submission failed. Please contact support.");
-                  }
-                })
-                .catch((err) => {
-                  console.error(err);
-                  alert("Network error. Please contact support.");
-                });
-            },
-          };
-
-          const rzp = new Razorpay(options);
-          rzp.on("payment.failed", function (response) {
-            console.error(response.error);
-            alert("Payment failed. Please try again.");
-          });
-          rzp.open();
+          // Submit form to Formspree
+          const formData = new FormData(form);
+          fetch(form.action, {
+            method: form.method,
+            body: formData,
+            headers: { Accept: "application/json" },
+          })
+            .then((res) => {
+              if (res.ok) {
+                form.reset();
+                window.location.href = "thankyou.html";
+              } else {
+                alert("Form submission failed. Please contact support.");
+              }
+            })
+            .catch((err) => {
+              console.error(err);
+              alert("Network error. Please contact support.");
+            });
         });
       });
     </script>
