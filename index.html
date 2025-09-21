@@ -101,6 +101,18 @@
   </head>
 
   <body>
+    <video id="introVideo" autoplay muted playsinline>
+      <source
+        src="intro-landscape.mp4"
+        type="video/mp4"
+        media="(min-width: 769px)"
+      />
+      <source
+        src="intro-portrait.mp4"
+        type="video/mp4"
+        media="(max-width: 768px)"
+      />
+    </video>
     <nav>
       <div class="menu-toggle" onclick="toggleMenu()">Menu ☰</div>
       <div class="menu" id="menu">
@@ -292,6 +304,26 @@
         const menu = document.getElementById("menu");
         menu.classList.toggle("show");
       }
+      const introVideo = document.getElementById("introVideo");
+      const content = document.getElementById("content");
+
+      // Check if video already played
+      if (localStorage.getItem("introPlayed")) {
+        introVideo.remove();
+        content.style.display = "block";
+      } else {
+        introVideo.onended = function () {
+          introVideo.remove();
+          content.style.display = "block";
+          localStorage.setItem("introPlayed", "true"); // mark as played
+        };
+      }
+      introVideo.addEventListener("click", () => {
+        introVideo.pause();
+        introVideo.style.display = "none";
+        content.style.display = "block";
+        localStorage.setItem("introPlayed", "true");
+      });
     </script>
 
     <footer>
